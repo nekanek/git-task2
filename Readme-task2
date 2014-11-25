@@ -1,0 +1,23 @@
+task 2
+========
+
+Возьмите https://github.com/hhru/frontik и из этой репы сделайте две:
+1. Должна содержать только frontik/testing.
+
+git clone https://github.com/hhru/frontik
+git filter-branch --subdirectory-filter frontik/testing/ -- --all
+
+2. Должна содержать всё кроме frontik/testing.
+
+git clone https://github.com/hhru/frontik
+git filter-branch --tree-filter 'rm -rf frontik/testing' --prune-empty HEAD
+
+
+
+При этом история в #2 не должна содержать frontik/testing, а история в #2 должна содержать только frontik/testing.
+ 
+Результат: две отдельных репы на гитхабе + репа списком выполненных git-команд для разделения. 
+
+===
+git remote add github https://github.com/nekanek/frontik-without-testing.git
+git push github master
